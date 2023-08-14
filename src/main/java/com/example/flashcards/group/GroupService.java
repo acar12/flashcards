@@ -4,6 +4,8 @@ import com.example.flashcards.card.Card;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GroupService {
     private final GroupRepository groupRepository;
@@ -16,6 +18,11 @@ public class GroupService {
     public Group createGroup(Group group) {
         if (group.getTitle().isBlank())
             throw new IllegalArgumentException("cannot set group title to blank string");
+        return groupRepository.save(group);
+    }
+
+    public List<Group> getAllGroups() {
+        return groupRepository.findAll();
     }
 
     public Group getById(Long id) {
