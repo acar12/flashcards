@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Configuration
 public class CardService {
     private final CardRepository cardRepository;
 
@@ -39,15 +38,5 @@ public class CardService {
     public void deleteCard(Long id) {
         Card card = getById(id);
         cardRepository.delete(card);
-    }
-
-    @Bean
-    public CommandLineRunner init() {
-        return args -> {
-            cardRepository.saveAll(List.of(
-                    new Card("Foo", "Bar"),
-                    new Card("Abc", "Def")
-            ));
-        };
     }
 }
