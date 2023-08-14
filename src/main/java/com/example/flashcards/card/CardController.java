@@ -15,11 +15,6 @@ public class CardController {
         this.cardService = cardService;
     }
 
-    @GetMapping
-    public List<Card> getAllCards() {
-        return cardService.getAll();
-    }
-
     @GetMapping("{id}")
     public Card getCardById(@PathVariable Long id) {
         return cardService.getById(id);
