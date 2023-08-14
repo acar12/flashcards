@@ -1,10 +1,8 @@
 package com.example.flashcards.card;
 
 import com.example.flashcards.group.Group;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
 import java.util.Objects;
 
@@ -13,7 +11,9 @@ public class Card {
     @Id
     @GeneratedValue
     private Long id;
+    @NonNull
     private String front;
+    @NonNull
     private String back;
     @ManyToOne
     private Group group;

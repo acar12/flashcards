@@ -2,6 +2,7 @@ package com.example.flashcards.group;
 
 import com.example.flashcards.card.Card;
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
 import java.util.Objects;
 import java.util.Set;
@@ -18,6 +19,7 @@ public class Group {
             orphanRemoval = true
     )
     private Set<Card> cards;
+    @NonNull
     private String title;
 
     public Group(String title) {
