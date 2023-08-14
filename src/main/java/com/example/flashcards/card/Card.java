@@ -1,8 +1,10 @@
 package com.example.flashcards.card;
 
+import com.example.flashcards.group.Group;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 import java.util.Objects;
 
@@ -10,9 +12,11 @@ import java.util.Objects;
 public class Card {
     @Id
     @GeneratedValue
-    public Long id;
-    public String front;
-    public String back;
+    private Long id;
+    private String front;
+    private String back;
+    @ManyToOne
+    private Group group;
 
     public Card() {
     }
@@ -20,6 +24,14 @@ public class Card {
     public Card(String front, String back) {
         this.front = front;
         this.back = back;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
     @Override
