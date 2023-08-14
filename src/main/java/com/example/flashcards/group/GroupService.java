@@ -29,8 +29,7 @@ public class GroupService {
         Group group = getById(id);
         group.getCards().add(card);
         groupRepository.save(group);
-        cardService.createCard(card);
-        return card;
+        return cardService.createCard(card);
     }
 
     public List<Group> getAllGroups() {
