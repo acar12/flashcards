@@ -25,11 +25,6 @@ public class CardController {
         return cardService.getById(id);
     }
 
-    @PostMapping
-    public Card createCard(Card card) {
-        return cardService.createCard(card);
-    }
-
     @PutMapping("{id}")
     public Card updateCard(@PathVariable Long id, Card newCard) {
         return cardService.updateCard(id, newCard);

@@ -27,12 +27,6 @@ public class CardService {
                 .orElseThrow(() -> new IllegalArgumentException("card id of " + id + " doesn't exist"));
     }
 
-    public Card createCard(Card card) {
-        if (card.getFront().isEmpty() || card.getBack().isEmpty())
-            throw new IllegalArgumentException("card front or back is empty string");
-        return cardRepository.save(card);
-    }
-
     public Card updateCard(Long id, Card newCard) {
         Card card = getById(id);
         card.setFront(newCard.getFront());
