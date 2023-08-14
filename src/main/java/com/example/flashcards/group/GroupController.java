@@ -1,5 +1,6 @@
 package com.example.flashcards.group;
 
+import com.example.flashcards.card.Card;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +38,16 @@ public class GroupController {
 
     @DeleteMapping("{id}")
     public void deleteGroup(@PathVariable Long id) {
-        groupService.deleteCard(id);
+        groupService.deleteGroup(id);
+    }
+
+    @GetMapping("{id}/cards")
+    public List<Card> getAllCardsByGroupId(@PathVariable Long id) {
+        return groupService.getAllCardsFromGroupId(id);
+    }
+
+    @PostMapping("{id}/cards")
+    public Card createCardInGroup(@PathVariable Long id, Card card) {
+        return groupService.createCardInGroup(id, card);
     }
 }

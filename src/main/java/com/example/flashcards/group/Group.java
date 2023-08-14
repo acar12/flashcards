@@ -4,8 +4,8 @@ import com.example.flashcards.card.Card;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 public class Group {
@@ -18,7 +18,7 @@ public class Group {
             cascade = CascadeType.REMOVE,
             orphanRemoval = true
     )
-    private Set<Card> cards;
+    private List<Card> cards;
     @NonNull
     private String title;
 
@@ -65,5 +65,13 @@ public class Group {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<Card> cards) {
+        this.cards = cards;
     }
 }

@@ -18,6 +18,10 @@ public class CardService {
         this.cardRepository = cardRepository;
     }
 
+    public Card createCard(Card card) {
+        return cardRepository.save(card);
+    }
+
     public Card getById(Long id) {
         return cardRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("card id of " + id + " doesn't exist"));
