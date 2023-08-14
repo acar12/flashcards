@@ -25,7 +25,7 @@ public class CardService {
 
     public Card updateCard(Long id, Card newCard) {
         if (newCard.getFront().isBlank() || newCard.getBack().isBlank())
-            throw new IllegalArgumentException("cannot update front and/or back fields with empty strings");
+            throw new IllegalArgumentException("cannot update front and/or back fields with blank strings");
         Card card = getById(id);
         card.setFront(newCard.getFront());
         card.setBack(newCard.getBack());
