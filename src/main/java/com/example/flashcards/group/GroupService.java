@@ -3,6 +3,7 @@ package com.example.flashcards.group;
 import com.example.flashcards.card.Card;
 import com.example.flashcards.card.CardRepository;
 import com.example.flashcards.card.CardService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public class GroupService {
         return groupRepository.save(group);
     }
 
+    @Transactional
     public Card createCardInGroup(Long id, Card card) {
         Group group = getById(id);
         group.getCards().add(card);

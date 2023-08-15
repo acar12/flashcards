@@ -15,7 +15,7 @@ public class Card {
     private String front;
     @NonNull
     private String back;
-    @ManyToOne
+    @ManyToOne @JoinColumn(name = "card_group")
     private Group group;
 
     public Card() {

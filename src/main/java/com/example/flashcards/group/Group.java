@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "card_group")
 public class Group {
     @Id
     @GeneratedValue
