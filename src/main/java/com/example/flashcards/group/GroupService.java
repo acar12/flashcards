@@ -26,12 +26,8 @@ public class GroupService {
         return groupRepository.save(group);
     }
 
-    @Transactional
     public Card createCardInGroup(Long id, Card card) {
-        Group group = getById(id);
-        group.getCards().add(card);
-        groupRepository.save(group);
-        return cardService.createCard(card);
+        return cardService.createCard(new Card(card.getFront(), card.getBack(), getById(id)));
     }
 
     public List<Group> getAllGroups() {
@@ -41,11 +37,6 @@ public class GroupService {
     public Group getById(Long id) {
         return groupRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("group id of " + id + " doesn't exist"));
-    }
-
-    public List<Card> getAllCardsFromGroupId(Long id) {
-        Group group = getById(id);
-        return group.getCards();
     }
 
     public Group updateGroup(Long id, String title) {

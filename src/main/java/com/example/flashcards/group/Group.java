@@ -1,11 +1,13 @@
 package com.example.flashcards.group;
 
 import com.example.flashcards.card.Card;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "card_group")
@@ -19,6 +21,7 @@ public class Group {
             cascade = CascadeType.REMOVE,
             orphanRemoval = true
     )
+    @JsonIgnore
     private List<Card> cards;
     @NonNull
     private String title;
@@ -70,6 +73,12 @@ public class Group {
 
     public List<Card> getCards() {
         return cards;
+    }
+
+    public List<Long> getCardIds() {
+        return cards.stream()
+                .map(Card::getId)
+                .collect(Collectors.toList());
     }
 
     public void setCards(List<Card> cards) {

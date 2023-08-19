@@ -1,6 +1,7 @@
 package com.example.flashcards.card;
 
 import com.example.flashcards.group.Group;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
@@ -15,7 +16,7 @@ public class Card {
     private String front;
     @NonNull
     private String back;
-    @ManyToOne @JoinColumn(name = "card_group")
+    @ManyToOne @JoinColumn(name = "card_group") @JsonIgnore
     private Group group;
 
     public Card() {
@@ -24,6 +25,12 @@ public class Card {
     public Card(String front, String back) {
         this.front = front;
         this.back = back;
+    }
+
+    public Card(String front, String back, Group group) {
+        this.front = front;
+        this.back = back;
+        this.group = group;
     }
 
     public Group getGroup() {
@@ -62,6 +69,10 @@ public class Card {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getGroupId() {
+        return group.getId();
     }
 
     public String getFront() {

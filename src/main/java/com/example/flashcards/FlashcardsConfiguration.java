@@ -12,18 +12,20 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FlashcardsConfiguration {
     private final GroupService groupService;
+    private final CardService cardService;
 
     @Autowired
-    public FlashcardsConfiguration(GroupService groupService) {
+    public FlashcardsConfiguration(GroupService groupService, CardService cardService) {
         this.groupService = groupService;
+        this.cardService = cardService;
     }
 
     @Bean
     public CommandLineRunner initDb() {
         return args -> {
-            Long id = groupService.createGroup(new Group("Basic Set")).getId();
-            groupService.createCardInGroup(id, new Card("Test 1", "Foo"));
-            groupService.createCardInGroup(id, new Card("Test 2", "Bar"));
+            Group group = groupService.createGroup(new Group("Basic Set"));
+            cardService.createCard(new Card("Test 1", "Foo", group));
+            cardService.createCard(new Card("Test 2", "Bar", group));
         };
     }
 }

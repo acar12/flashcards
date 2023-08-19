@@ -41,11 +41,6 @@ public class GroupController {
         groupService.deleteGroup(id);
     }
 
-    @GetMapping("{id}/cards")
-    public List<Card> getAllCardsByGroupId(@PathVariable Long id) {
-        return groupService.getAllCardsFromGroupId(id);
-    }
-
     @PostMapping("{id}/cards")
     public Card createCardInGroup(@PathVariable Long id, Card card) {
         return groupService.createCardInGroup(id, card);
